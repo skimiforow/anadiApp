@@ -20,9 +20,14 @@ public class AppController {
 
     public boolean executeTest(ConnectData data)
     {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
         Testing testExecuter = new Testing(data);
         result = testExecuter.execute();
-
+       ;
+            }
+        });
         return (result != null);
     }
 

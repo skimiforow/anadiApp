@@ -64,7 +64,7 @@ public class AppUi extends javax.swing.JFrame {
         txtResults = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        txtTestes = new javax.swing.JList<>();
+        txtTestes = new javax.swing.JList<ConnectData>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,7 +87,7 @@ public class AppUi extends javax.swing.JFrame {
         txtPorto.setToolTipText("Entre 0 e 65535");
 
         txtNoRede.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtNoRede.setText("www.ipp.pt");
+        txtNoRede.setText("http://isep.ipp.pt/");
         txtNoRede.setToolTipText("(endereço IPv4, endereço IPv6 ou nome DNS) ");
 
         txtTempoLimite.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -131,6 +131,11 @@ public class AppUi extends javax.swing.JFrame {
         btnCancelar.setMaximumSize(new java.awt.Dimension(90, 23));
         btnCancelar.setMinimumSize(new java.awt.Dimension(90, 23));
         btnCancelar.setPreferredSize(new java.awt.Dimension(90, 23));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Testes a executar:");
@@ -225,7 +230,6 @@ public class AppUi extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,7 +241,6 @@ public class AppUi extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnExecutar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,7 +263,9 @@ public class AppUi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        if ((Integer.parseInt(txtAmostragem.getText()) < 1)) {
+        if ((txtAmostragem.getText().equals("")) || (txtDuracaoTeste.getText().equals("")) || (txtNoRede.getText().equals("")) || (txtPorto.getText().equals("")) || (txtTempoLimite.getText().equals(""))) {
+            JOptionPane.showMessageDialog(this, "Tem de preencher todos os dados para a ligação.");
+        } else if ((Integer.parseInt(txtAmostragem.getText()) < 1)) {
             JOptionPane.showMessageDialog(this, "Amostragem tem de ser maior que 0.");
         } else if ((Integer.parseInt(txtPorto.getText()) < 1) || (Integer.parseInt(txtPorto.getText()) > 65535)) {
             JOptionPane.showMessageDialog(this, "Porto tem de ser maior que 0 e menor do que 65535.");
@@ -299,18 +304,27 @@ public class AppUi extends javax.swing.JFrame {
 
     private void btnExecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExecutarActionPerformed
         txtResults.setText("A iniciar a recolha de dados..." + "\n");
-        
-        for (ConnectData connectData : connectdata) {
-                    if (!this.ac.executeTest(connectData)) {
-                        txtResults.setText(txtResults.getText() + "O teste " + connectData.getNode() + " falhou!" + "\n");
-                    }
-        }
-        txtResults.setText("A iniciar a exportação de dados..." + "\n");
 
-        if (!this.ac.export()) {
-            txtResults.setText(txtResults.getText() + "A exportação do ficheiro falhou!" + "\n");
+        for (ConnectData connectData : connectdata) {
+            if (!this.ac.executeTest(connectData)) {
+                txtResults.setText(txtResults.getText() + "O teste " + connectData.getNode() + " falhou!" + "\n");
+            }
+            txtResults.setText(txtResults.getText() + "A iniciar a exportação de dados..." + "\n");
+            if (!this.ac.export()) {
+                txtResults.setText(txtResults.getText() + "A exportação do ficheiro falhou!" + "\n");
+            }
         }
     }//GEN-LAST:event_btnExecutarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        txtAmostragem.setText("");
+        txtDuracaoTeste.setText("");
+        txtNoRede.setText("");
+        txtPorto.setText("");
+        txtResults.setText("");
+        txtTempoLimite.setText("");
+        txtTestes.setModel(new DefaultListModel<>());
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

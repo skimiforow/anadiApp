@@ -4,6 +4,7 @@ import java.io.Console;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 /**
  * Created by skimi on 25/04/2017.
@@ -43,10 +44,10 @@ public class Testing {
             difference = Duration.between(before, after).toMillis();
 
         } while (difference <= limit);
-
+        
         // generate results based on the test executed
         endTime = Calendar.getInstance();
-
+        JOptionPane.showMessageDialog(null, "Cheguei à cricao do result.");
         return new Result(data, startTime, endTime, samplings, numberSuccess);
     }
 

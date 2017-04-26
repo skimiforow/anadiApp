@@ -131,7 +131,6 @@
                           <Component id="jScrollPane3" min="-2" pref="96" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnRemove" min="-2" max="-2" attributes="0"/>
@@ -146,7 +145,6 @@
                           <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="41" max="-2" attributes="0"/>
                           <Component id="btnExecutar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
@@ -201,7 +199,7 @@
         <Component class="javax.swing.JTextField" name="txtNoRede">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="www.ipp.pt"/>
+            <Property name="text" type="java.lang.String" value="http://isep.ipp.pt/"/>
             <Property name="toolTipText" type="java.lang.String" value="(endere&#xe7;o IPv4, endere&#xe7;o IPv6 ou nome DNS) "/>
           </Properties>
         </Component>
@@ -282,6 +280,9 @@
               <Dimension value="[90, 23]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
