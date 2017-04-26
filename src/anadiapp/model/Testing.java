@@ -17,7 +17,7 @@ public class Testing {
         this.data = data;
     }
 
-    public Result execute(){
+    public Result execute() {
         int samplings = 0;
         int numberSuccess = 0;
         boolean success = false;
@@ -44,15 +44,13 @@ public class Testing {
             difference = Duration.between(before, after).toMillis();
 
         } while (difference <= limit);
-        
+
         // generate results based on the test executed
         endTime = Calendar.getInstance();
-        JOptionPane.showMessageDialog(null, "Cheguei à cricao do result.");
         return new Result(data, startTime, endTime, samplings, numberSuccess);
     }
 
-    private void awaitNextTry()
-    {
+    private void awaitNextTry() {
         Instant before = Instant.now();
         float limit = data.getIntervalInMilii();
         float difference = 0;
@@ -62,6 +60,5 @@ public class Testing {
             difference = Duration.between(before, after).toMillis();
         } while (difference <= limit);
     }
-
 
 }
