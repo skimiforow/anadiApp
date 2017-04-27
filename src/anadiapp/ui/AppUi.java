@@ -11,7 +11,11 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import anadiapp.model.ConnectData;
 import anadiapp.model.JobLauncher;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import javax.swing.JTextArea;
+import javax.swing.Timer;
 import javax.swing.text.DefaultCaret;
 
 /**
@@ -67,6 +71,7 @@ public class AppUi extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
+        labelTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImages(null);
@@ -162,7 +167,7 @@ public class AppUi extends javax.swing.JFrame {
         jLabel8.setText("ANADI Recolha de dados");
 
         txtTestes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        txtTestes.setToolTipText("Testes pendentes para executar");
+        txtTestes.setToolTipText("Ligações para execução");
         jScrollPane3.setViewportView(txtTestes);
 
         jButton1.setLabel("Limpar");
@@ -175,6 +180,8 @@ public class AppUi extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        labelTime.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -210,7 +217,7 @@ public class AppUi extends javax.swing.JFrame {
                                             .addComponent(txtPorto, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtDuracaoTeste)
                                             .addComponent(txtAmostragem, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(0, 3, Short.MAX_VALUE))
+                                        .addGap(0, 6, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -222,17 +229,20 @@ public class AppUi extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(24, 24, 24)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnExecutar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(10, 10, 10))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel7)
-                                .addGap(0, 277, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnExecutar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelTime, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -246,7 +256,8 @@ public class AppUi extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAmostragem)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -279,7 +290,7 @@ public class AppUi extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExecutar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,7 +298,6 @@ public class AppUi extends javax.swing.JFrame {
                 .addGap(5, 5, 5))
         );
 
-        jButton1.getAccessibleContext().setAccessibleName("Limpar");
         jButton1.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -348,6 +358,7 @@ public class AppUi extends javax.swing.JFrame {
         if (connectdata.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Tem de adicionar testes para execução.");
         } else {
+            time();
             DisableForm();
             // ATENCAO: Lançar thread aqui para manter UI livre para ações
             new Thread(new Runnable() {
@@ -441,6 +452,7 @@ public class AppUi extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel labelTime;
     private javax.swing.JTextField txtAmostragem;
     private javax.swing.JTextField txtDuracaoTeste;
     private javax.swing.JTextField txtNoRede;
@@ -489,5 +501,30 @@ public class AppUi extends javax.swing.JFrame {
         setText("");
         this.txtTempoLimite.setText("");
         this.txtTestes.setModel(new DefaultListModel<>());
+    }
+
+    public void time() {
+        this.labelTime.setText("Inciar contagem...");
+        final Timer t = new Timer(1000, new ActionListener() {
+            int time = Integer.parseInt(txtDuracaoTeste.getText()) * 60;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                time--;
+                labelTime.setText(format(time / 60) + ":" + format(time % 60));
+                if (time == 0) {
+                    final Timer timer = (Timer) e.getSource();
+                    timer.stop();
+                }
+            }
+        });
+        t.start();
+    }
+
+    private static String format(int i) {
+        String result = String.valueOf(i);
+        if (result.length() == 1) {
+            result = "0" + result;
+        }
+        return result;
     }
 }

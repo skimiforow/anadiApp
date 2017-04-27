@@ -44,7 +44,7 @@ public class Testing implements Runnable {
                 AppUi.setText("Sucesso em establecer ligação a " + data.getNode() + "\n");
                 numberSuccess++;
             } else {
-                AppUi.setText("Falha na resposta de " + data.getNode() + "\n");
+                AppUi.setText(" |-O-| Falha na resposta de " + data.getNode() + "\n");
             }
             samplings++;
             testes++;
