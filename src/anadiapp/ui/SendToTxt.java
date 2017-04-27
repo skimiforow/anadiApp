@@ -15,7 +15,7 @@ public class SendToTxt {
     private static final String FILENAME = "test_";
     private static final String EXTENSION = ".csv";
     private static final String HEADER = "Data_Hora_Inicio;IntervaloAmostragem(seg);Node;Porto;Timeout(seg);DuracaoTeste(min);Data_Hora_Fim;"
-            + "TotalAmostragens;Dispon;MTBF"+"\n";
+            + "TotalAmostragens;Sucessos;Dispon;MTBF(hor)"+"\n";
 
     private File file = null;
     private FileWriter fileWriter = null;
@@ -56,6 +56,8 @@ public class SendToTxt {
         this.fileWriter.write(String.format("%d", this.result.getTestEnd().getTimeInMillis() / 1000));
         this.fileWriter.write(";");
         this.fileWriter.write(String.format("%d", this.result.getTotalSampling()));
+        this.fileWriter.write(";");
+        this.fileWriter.write(String.format("%d", this.result.getSucess()));
         this.fileWriter.write(";");
         this.fileWriter.write(String.format("%.2f", this.result.getAvailability()));
         this.fileWriter.write(";");

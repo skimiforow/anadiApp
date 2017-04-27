@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import anadiapp.model.ConnectData;
+import anadiapp.model.JobLauncher;
 import javax.swing.JTextArea;
 import javax.swing.text.DefaultCaret;
 
@@ -17,17 +18,15 @@ import javax.swing.text.DefaultCaret;
  *
  * @author skimi
  */
-public class AppUi extends javax.swing.JFrame
-{
+public class AppUi extends javax.swing.JFrame {
 
     /**
      * Creates new form AppUi
      */
-    AppController ac = new AppController(this.txtResults);
+    AppController ac = new AppController(this);
     ArrayList<ConnectData> connectdata = new ArrayList<ConnectData>();
 
-    public AppUi()
-    {
+    public AppUi() {
         initComponents();
         setResizable(false);
         ((DefaultCaret) txtResults.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
@@ -70,13 +69,12 @@ public class AppUi extends javax.swing.JFrame
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         setIconImages(null);
         setMaximumSize(null);
         setMinimumSize(null);
+        setResizable(false);
 
         jPanel1.setMaximumSize(null);
-        jPanel1.setMinimumSize(null);
         jPanel1.setVerifyInputWhenFocusTarget(false);
 
         jLabel1.setText("Intervalo de Amostragem (seg)");
@@ -167,7 +165,11 @@ public class AppUi extends javax.swing.JFrame
         txtTestes.setToolTipText("Testes pendentes para executar");
         jScrollPane3.setViewportView(txtTestes);
 
-        jButton1.setText("Limpar lista");
+        jButton1.setLabel("Limpar");
+        jButton1.setMaximumSize(new java.awt.Dimension(90, 23));
+        jButton1.setMinimumSize(new java.awt.Dimension(90, 23));
+        jButton1.setName(""); // NOI18N
+        jButton1.setPreferredSize(new java.awt.Dimension(90, 23));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -190,8 +192,9 @@ public class AppUi extends javax.swing.JFrame
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jSeparator2)
+                                    .addComponent(jScrollPane3)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(20, 20, 20)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,23 +209,24 @@ public class AppUi extends javax.swing.JFrame
                                             .addComponent(txtNoRede, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                                             .addComponent(txtPorto, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtDuracaoTeste)
-                                            .addComponent(txtAmostragem, javax.swing.GroupLayout.Alignment.LEADING)))
+                                            .addComponent(txtAmostragem, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(0, 3, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
-                                        .addGap(186, 186, 186)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane3))
+                                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(15, 15, 15)))
                                 .addGap(11, 11, 11))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(24, 24, 24)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel7)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 277, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -279,17 +283,18 @@ public class AppUi extends javax.swing.JFrame
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExecutar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5))
         );
+
+        jButton1.getAccessibleContext().setAccessibleName("Limpar");
+        jButton1.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,22 +348,20 @@ public class AppUi extends javax.swing.JFrame
         if (connectdata.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Tem de adicionar testes para execução.");
         } else {
-
+            DisableForm();
             // ATENCAO: Lançar thread aqui para manter UI livre para ações
-            new Thread(new Runnable()
-            {
+            new Thread(new Runnable() {
                 @Override
-                public void run()
-                {
-                    if (ac.executeTest(txtResults,connectdata)) {
-                                    txtResults.setText("A iniciar a recolha de dados..." + "\n");
+                public void run() {
+                    setText("A iniciar a recolha de dados..." + "\n");
+                    if (ac.executeTest(connectdata)) {
                     } else {
-                        txtResults.setText(txtResults.getText() + "O teste falhou devido a erros de concorrência!" + "\n");
+                        setText(getTextResult() + "O teste falhou devido a erros de concorrência!" + "\n");
                         return;
                     }
 
-                    txtResults.setText(txtResults.getText() + "A iniciar a exportação de dados..." + "\n");
-                    ac.export();
+                    setText(getTextResult() + "A iniciar a exportação de dados..." + "\n");
+                    ac.export(txtResults);
                 }
 
             }).start();
@@ -367,13 +370,9 @@ public class AppUi extends javax.swing.JFrame
     }//GEN-LAST:event_btnExecutarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        txtAmostragem.setText("");
-        txtDuracaoTeste.setText("");
-        txtNoRede.setText("");
-        txtPorto.setText("");
-        txtResults.setText("");
-        txtTempoLimite.setText("");
-        txtTestes.setModel(new DefaultListModel<>());
+        enableForm();
+        clearForm();
+        this.ac.stopThreads();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -383,8 +382,7 @@ public class AppUi extends javax.swing.JFrame
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -409,15 +407,20 @@ public class AppUi extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 new AppUi().setVisible(true);
             }
         });
     }
 
+    private String returnResult() {
+        return this.txtResults.getText();
+    }
+
+    private String getTextResult() {
+        return returnResult();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -446,4 +449,45 @@ public class AppUi extends javax.swing.JFrame
     private javax.swing.JTextField txtTempoLimite;
     private javax.swing.JList<ConnectData> txtTestes;
     // End of variables declaration//GEN-END:variables
+
+    public void setText(String string) {
+        String test = getTextResult();
+        this.txtResults.setText(test + string);
+    }
+
+    public void DisableForm() {
+        this.txtAmostragem.setEnabled(false);
+        this.txtDuracaoTeste.setEnabled(false);
+        this.txtNoRede.setEnabled(false);
+        this.txtPorto.setEnabled(false);
+        this.txtTempoLimite.setEnabled(false);
+        this.txtTestes.setEnabled(false);
+        this.btnAdd.setEnabled(false);
+        this.btnRemove.setEnabled(false);
+        this.btnExecutar.setEnabled(false);
+        this.jButton1.setEnabled(false);
+    }
+
+    public void enableForm() {
+        this.txtAmostragem.setEnabled(true);
+        this.txtDuracaoTeste.setEnabled(true);
+        this.txtNoRede.setEnabled(true);
+        this.txtPorto.setEnabled(true);
+        this.txtTempoLimite.setEnabled(true);
+        this.txtTestes.setEnabled(true);
+        this.btnAdd.setEnabled(true);
+        this.btnRemove.setEnabled(true);
+        this.btnExecutar.setEnabled(true);
+        this.jButton1.setEnabled(true);
+    }
+
+    public void clearForm() {
+        this.txtAmostragem.setText("");
+        this.txtDuracaoTeste.setText("");
+        this.txtNoRede.setText("");
+        this.txtPorto.setText("");
+        setText("");
+        this.txtTempoLimite.setText("");
+        this.txtTestes.setModel(new DefaultListModel<>());
+    }
 }

@@ -5,6 +5,7 @@
  */
 package anadiapp.model;
 
+import anadiapp.ui.AppUi;
 import java.util.*;
 import javax.swing.JTextArea;
 
@@ -18,12 +19,12 @@ public class JobLauncher
     private List<ConnectData> data = null;
     private Thread[] jobs = null;
     private Testing[] tests = null;
-    private JTextArea txtResults = null;
+    private AppUi AppUi = null;
     
-    public JobLauncher(JTextArea txtResults, List<ConnectData> connectdata)
+    public JobLauncher(AppUi aThis, List<ConnectData> connectdata)
     {
         this.data = connectdata;
-        this.txtResults = txtResults;
+        this.AppUi = aThis;
     }
     
     public List<Result> launch() throws InterruptedException
@@ -34,8 +35,8 @@ public class JobLauncher
         
         int i = 0;
         for (ConnectData cd : this.data) {
-            txtResults.setText(txtResults.getText() + "A tratar recolha: " +  cd.getNode() + "\n");
-            this.tests[i] = new Testing(txtResults, cd);
+            AppUi.setText("A tratar recolha: " +  cd.getNode() + "\n");
+            this.tests[i] = new Testing(AppUi, cd);
             this.jobs[i] = new Thread(this.tests[i]);
             this.jobs[i].start();
             i++;
@@ -47,10 +48,9 @@ public class JobLauncher
         }
         
         for (i = 0; i < numberJobs; i++) {
-            txtResults.setText(txtResults.getText() + "A processar resultados " + i + "\n");
+            AppUi.setText("A processar resultados " + i+1 + "\n");
             list.add(this.tests[i].getResult());
         }
-        
         return list;
     }
 }

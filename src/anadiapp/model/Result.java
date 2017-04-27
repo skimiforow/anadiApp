@@ -1,6 +1,7 @@
 package anadiapp.model;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.util.Calendar;
 
 /**
@@ -12,6 +13,7 @@ public class Result {
     private final Calendar end;
     private final int sampling;
     private final float availability;
+    private final int sucess;
     private final float mtbf;
     private float mttf;
 
@@ -20,6 +22,7 @@ public class Result {
         this.start = start;
         this.end = end;
         this.sampling = sampling;
+        this.sucess = numberSucess;
         this.availability = (float) numberSucess / sampling;
         this.mtbf = calculateMTBF(numberSucess);
     }
@@ -52,8 +55,15 @@ public class Result {
         return mttf;
     }
 
+    public int getSucess() {
+        return sucess;
+    }
+
     private float calculateMTBF(int numberSucess){
-        float operationTime = Duration.between(this.start.toInstant(), this.end.toInstant()).toHours();
+        Instant instantStart = this.start.toInstant();
+        Instant instantEnd = this.end.toInstant();
+        Duration between = Duration.between(instantStart, instantEnd);
+        float operationTime = between.toHours();
         float numFailures = this.sampling - numberSucess;
         if(numFailures !=0){
             mttf = operationTime / numFailures;

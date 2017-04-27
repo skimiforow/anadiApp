@@ -1,5 +1,6 @@
 package anadiapp.model;
 
+import anadiapp.ui.AppUi;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Calendar;
@@ -12,11 +13,11 @@ public class Testing implements Runnable {
 
     private final ConnectData data;
     private Result result;
-    private JTextArea txtResults = null;
+    AppUi AppUi = null;
 
-    public Testing(JTextArea txtResults, ConnectData data) {
+    public Testing(AppUi AppUi, ConnectData data) {
         this.data = data;
-        this.txtResults = txtResults;
+        this.AppUi = AppUi;
 
     }
 
@@ -35,13 +36,15 @@ public class Testing implements Runnable {
 
         do {
             /*Console.print("Testing -> "+ (samplings + 1));*/
-            txtResults.setText(txtResults.getText() + "Tentativa de ligação: " + testes + " de " + data.getNode() + "\n");
-            Connection c = new Connection(txtResults, data);
+            AppUi.setText("Tentativa de ligação: " + testes + " de " + data.getNode() + "\n");
+            Connection c = new Connection(AppUi, data);
             success = c.connected();
 
             if (success) {
-                txtResults.setText(txtResults.getText() + "Sucesso em establecer ligação a " + data.getNode() + "\n");
+                AppUi.setText("Sucesso em establecer ligação a " + data.getNode() + "\n");
                 numberSuccess++;
+            } else {
+                AppUi.setText("Falha na resposta de " + data.getNode() + "\n");
             }
             samplings++;
             testes++;

@@ -1,5 +1,6 @@
 package anadiapp.model;
 
+import anadiapp.ui.AppUi;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -14,15 +15,15 @@ public class Connection {
     private final InetSocketAddress socketAdd;
     private boolean connected;
     Socket sock;
-    private JTextArea txtResults = null;
+    private AppUi AppUi = null;
 
 
-    public Connection(JTextArea txtResults, ConnectData data) {
+    public Connection(AppUi AppUi, ConnectData data) {
         this.data = data;
         this.connected = false;
         this.sock = null;
         this.socketAdd= new InetSocketAddress(data.getNode(),data.getPort());
-        this.txtResults = txtResults;
+        this.AppUi = AppUi;
     }
 
     public boolean connected(){
@@ -31,9 +32,8 @@ public class Connection {
             sock = new Socket();
             sock.connect(socketAdd,timeout);
             connected = sock.isConnected();
-            txtResults.setText(txtResults.getText() + "Sucesso na resposta de " + data.getNode() + "\n");
         } catch (IOException e) {
-            txtResults.setText(txtResults.getText() + "Falha na resposta de " + data.getNode() + " - " + e.getMessage() +"\n");
+            AppUi.setText("Falha de " + data.getNode() + ", tipo - " + e.getMessage() +"\n");
             connected = false;
             e.printStackTrace();
         }
