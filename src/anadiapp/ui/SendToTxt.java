@@ -1,21 +1,21 @@
-package ui;
+package anadiapp.ui;
 
-import model.Result;
+import anadiapp.model.Result;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.Scanner;
 
 /**
  * Created by skimi on 25/04/2017.
  */
 public class SendToTxt {
-    private static final String FILENAME = "./out/teste_"+ Calendar.getInstance().getTime();
-    private static final String EXTENSION = ".txt";
-    private static final String HEADER = "Data_Hora_Inicio;IntervaloAmostragem;Node;Porto;Timeout;DuracaoTeste;Data_Hora_Fim;"
-            + "TotalAmostragens;Dispon;MTBF\n";
+    // ATENCAO!! Nao user tempos no filename!! Converter para string primeiro
+    private static final String FILENAME = "test_";
+    private static final String EXTENSION = ".csv";
+    private static final String HEADER = "Data_Hora_Inicio;IntervaloAmostragem(seg);Node;Porto;Timeout(seg);DuracaoTeste(min);Data_Hora_Fim;"
+            + "TotalAmostragens;Dispon;MTBF"+"\n";
 
     private File file = null;
     private FileWriter fileWriter = null;

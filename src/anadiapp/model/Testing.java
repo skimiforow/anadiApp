@@ -1,24 +1,28 @@
-package model;
+package anadiapp.model;
 
-import java.io.Console;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Calendar;
-import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 /**
  * Created by skimi on 25/04/2017.
  */
-public class Testing {
+public class Testing implements Runnable {
 
     private final ConnectData data;
+    private Result result;
+    private JTextArea txtResults = null;
 
-    public Testing(ConnectData data) {
+    public Testing(JTextArea txtResults, ConnectData data) {
         this.data = data;
+        this.txtResults = txtResults;
+
     }
 
-    public Result execute() {
+    private Result execute() {
         int samplings = 0;
+        int testes = 1;
         int numberSuccess = 0;
         boolean success = false;
         Calendar startTime = Calendar.getInstance();
@@ -31,13 +35,16 @@ public class Testing {
 
         do {
             /*Console.print("Testing -> "+ (samplings + 1));*/
-            Connection c = new Connection(data);
+            txtResults.setText(txtResults.getText() + "Tentativa de ligação: " + testes + " de " + data.getNode() + "\n");
+            Connection c = new Connection(txtResults, data);
             success = c.connected();
 
             if (success) {
+                txtResults.setText(txtResults.getText() + "Sucesso em establecer ligação a " + data.getNode() + "\n");
                 numberSuccess++;
             }
             samplings++;
+            testes++;
 
             awaitNextTry();
             after = Instant.now();
@@ -59,6 +66,15 @@ public class Testing {
             Instant after = Instant.now();
             difference = Duration.between(before, after).toMillis();
         } while (difference <= limit);
+    }
+
+    public Result getResult() {
+        return result;
+    }
+
+    @Override
+    public void run() {
+        this.result = execute();
     }
 
 }

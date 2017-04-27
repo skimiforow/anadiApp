@@ -1,4 +1,4 @@
-package model;
+package anadiapp.model;
 
 /**
  * Created by Sérgio Silva e José Caldeira - TP2 ANADI on 25/04/2017.
@@ -54,7 +54,7 @@ public class ConnectData {
 
     @Override
     public String toString() {
-        return "ConnectData{" + "timeInterval=" + timeInterval + ", port=" + port + ", node=" + node + ", timeout=" + timeout + ", duration=" + duration + '}';
+        return "ConnectData - {" + "timeInterval=" + timeInterval + " seg" +", port=" + port + ", node=" + node + ", timeout=" + timeout + " seg" + ", duration=" + duration+ " min" + '}';
     }
     
     

@@ -1,4 +1,4 @@
-package model;
+package anadiapp.model;
 
 import java.time.Duration;
 import java.util.Calendar;
@@ -59,6 +59,9 @@ public class Result {
             mttf = operationTime / numFailures;
         } else {
             mttf = 0;
+        }
+        if (mttf == 0) {
+            return 0;
         }
         return mttf / this.availability;
     }
