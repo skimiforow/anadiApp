@@ -24,7 +24,7 @@ public class Result {
         this.sampling = numberSampling;
         this.sucess = numberSucess;
         this.availability = (float) numberSucess / sampling;
-        this.mtbf = calculateMTBF(numberSucess);
+        this.mtbf = mTBFCalculation(numberSucess);
     }
 
     public ConnectData getConfig() {
@@ -59,35 +59,18 @@ public class Result {
         return sucess;
     }
 
-//    private float calculateMTBF(int numberSucess){
-//        Instant instantStart = this.start.toInstant();
-//        Instant instantEnd = this.end.toInstant();
-//        Duration between = Duration.between(instantStart, instantEnd);
-//        float operationTime = between.toHours();
-//        float numFailures = this.sampling - numberSucess;
-//        if(numFailures !=0){
-//            mttf = operationTime / numFailures;
-//        } else {
-//            mttf = 0;
-//        }
-//        if (mttf == 0) {
-//            return 0;
-//        }
-//        return mttf / this.availability;
-//    }
-
-    private float calculateMTBF(int numberSucess){
+    private float mTBFCalculation(int numberSucess){
         float numFailures = this.sampling - numberSucess;
         int interval = this.config.getInterval();
         if(numFailures >0){
-            mttf = (numberSucess * interval) / numFailures;
+            mttf = ((numberSucess * interval) / numFailures);
         } else {
             mttf = 0;
         }
         if (mttf == 0) {
             return 0;
         }
-        return (mttf / this.availability)*3600;
+        return (mttf / this.availability)/3600;
     }
     
     public int getTotalSampling() {

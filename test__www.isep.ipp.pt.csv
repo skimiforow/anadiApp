@@ -1,4 +1,0 @@
-Data_Hora_Inicio;IntervaloAmostragem(seg);Node;Porto;Timeout(seg);DuracaoTeste(min);Data_Hora_Fim;TotalAmostragens;Sucessos;Dispon;MTBF(hor)
-1493323290;5;www.isep.ipp.pt;80;5;1,00;1493323350;12;7;0,58;12,00
-1493323290;5;www.isep.ipp.pt;80;5;1,00;1493323350;12;6;0,50;10,00
-1493323290;5;www.isep.ipp.pt;80;5;1,00;1493323350;12;6;0,50;10,00
