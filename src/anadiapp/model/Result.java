@@ -17,11 +17,11 @@ public class Result {
     private final float mtbf;
     private float mttf;
 
-    Result(ConnectData config, Calendar start, Calendar end, int sampling, int numberSucess) {
+    Result(ConnectData config, Calendar start, Calendar end, int numberSampling, int numberSucess) {
         this.config = config;
         this.start = start;
         this.end = end;
-        this.sampling = sampling;
+        this.sampling = numberSampling;
         this.sucess = numberSucess;
         this.availability = (float) numberSucess / sampling;
         this.mtbf = calculateMTBF(numberSucess);
@@ -59,24 +59,37 @@ public class Result {
         return sucess;
     }
 
+//    private float calculateMTBF(int numberSucess){
+//        Instant instantStart = this.start.toInstant();
+//        Instant instantEnd = this.end.toInstant();
+//        Duration between = Duration.between(instantStart, instantEnd);
+//        float operationTime = between.toHours();
+//        float numFailures = this.sampling - numberSucess;
+//        if(numFailures !=0){
+//            mttf = operationTime / numFailures;
+//        } else {
+//            mttf = 0;
+//        }
+//        if (mttf == 0) {
+//            return 0;
+//        }
+//        return mttf / this.availability;
+//    }
+
     private float calculateMTBF(int numberSucess){
-        Instant instantStart = this.start.toInstant();
-        Instant instantEnd = this.end.toInstant();
-        Duration between = Duration.between(instantStart, instantEnd);
-        float operationTime = between.toHours();
         float numFailures = this.sampling - numberSucess;
-        if(numFailures !=0){
-            mttf = operationTime / numFailures;
+        int interval = this.config.getInterval();
+        if(numFailures >0){
+            mttf = (numberSucess * interval) / numFailures;
         } else {
             mttf = 0;
         }
         if (mttf == 0) {
             return 0;
         }
-        return mttf / this.availability;
+        return (mttf / this.availability)*3600;
     }
-
-
+    
     public int getTotalSampling() {
         return sampling;
     }

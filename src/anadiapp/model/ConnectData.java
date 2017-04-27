@@ -11,7 +11,6 @@ public class ConnectData {
     private final int timeout;
     private final float duration;
 
-
     public ConnectData(int timeInterval, int port, String node, int timeout, float duration) {
         this.timeInterval = timeInterval;
         this.port = port;
@@ -54,8 +53,11 @@ public class ConnectData {
 
     @Override
     public String toString() {
-        return "ConnectData - {" + "timeInterval=" + timeInterval + " seg" +", port=" + port + ", node=" + node + ", timeout=" + timeout + " seg" + ", duration=" + duration+ " min" + '}';
+        return "ConnectData - {" + "timeInterval=" + timeInterval + " seg" + ", port=" + port + ", node=" + node + ", timeout=" + timeout + " seg" + ", duration=" + duration + " min" + '}';
     }
-    
-    
+
+    int getInterval() {
+        return timeInterval;
+    }
+
 }
