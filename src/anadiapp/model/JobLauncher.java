@@ -46,9 +46,10 @@ public class JobLauncher
         for (i = 0; i < numberJobs; i++) {
             this.jobs[i].join();
         }
-        
+        int status = 0;
         for (i = 0; i < numberJobs; i++) {
-            AppUi.setText("A processar resultados " + i+1 + "\n");
+            status = i +1;
+            AppUi.setText("A processar resultados " + status + "\n");
             list.add(this.tests[i].getResult());
         }
         return list;
