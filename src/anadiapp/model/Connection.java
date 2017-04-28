@@ -27,10 +27,11 @@ public class Connection {
     }
 
     public boolean connected(){
-        int timeout  = this.data.getTimeoutMilli();
+        //int timeout  = this.data.getTimeoutMilli();
+        int timeout  = this.data.getTimeout();
         try{
             sock = new Socket();
-            sock.connect(socketAdd,50);
+            sock.connect(socketAdd,timeout);
             connected = sock.isConnected();
         } catch (IOException e) {
             AppUi.setText("Falha de " + data.getNode() + ", tipo - " + e.getMessage() +"\n");

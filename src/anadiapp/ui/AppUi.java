@@ -105,7 +105,7 @@ public class AppUi extends javax.swing.JFrame {
         txtNoRede.setToolTipText("(endereço IPv4, endereço IPv6 ou nome DNS) ");
 
         txtTempoLimite.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtTempoLimite.setText("5");
+        txtTempoLimite.setText("50");
         txtTempoLimite.setToolTipText("em segundos");
 
         txtDuracaoTeste.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -388,7 +388,7 @@ public class AppUi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        txtTestes.setModel(new DefaultListModel<>());
+        txtTestes.setModel(new DefaultListModel<ConnectData>());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -501,7 +501,7 @@ public class AppUi extends javax.swing.JFrame {
         this.txtPorto.setText("");
         setText("");
         this.txtTempoLimite.setText("");
-        this.txtTestes.setModel(new DefaultListModel<>());
+        this.txtTestes.setModel(new DefaultListModel<ConnectData>());
     }
 
     public void time() {
