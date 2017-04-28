@@ -10,6 +10,7 @@ public class ConnectData {
     private final String node;
     private final int timeout;
     private final float duration;
+    private final String address;
 
     public ConnectData(int timeInterval, int port, String node, int timeout, float duration) {
         this.timeInterval = timeInterval;
@@ -17,6 +18,7 @@ public class ConnectData {
         this.node = node;
         this.timeout = timeout;
         this.duration = duration;
+        this.address = node.replace('/', '\\');
     }
 
     public int getTimeInterval() {
@@ -49,6 +51,10 @@ public class ConnectData {
 
     public float getIntervalInMilii() {
         return timeInterval * 1000;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     @Override

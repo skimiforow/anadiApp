@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Sergio/Documents/NetBeansProjects/anadiApp/src/anadiapp/ui/SendToTxt.java</file>
-            <file>file:/C:/Users/Sergio/Documents/NetBeansProjects/anadiApp/src/anadiapp/model/Testing.java</file>
-            <file>file:/C:/Users/Sergio/Documents/NetBeansProjects/anadiApp/src/anadiapp/controller/AppController.java</file>
-            <file>file:/C:/Users/Sergio/Documents/NetBeansProjects/anadiApp/src/anadiapp/ui/AppUi.java</file>
-            <file>file:/C:/Users/Sergio/Documents/NetBeansProjects/anadiApp/src/anadiapp/model/Connection.java</file>
-            <file>file:/C:/Users/Sergio/Documents/NetBeansProjects/anadiApp/src/anadiapp/model/JobLauncher.java</file>
-            <file>file:/C:/Users/Sergio/Documents/NetBeansProjects/anadiApp/src/anadiapp/model/Result.java</file>
+            <file>file:/C:/Users/skimi/OneDrive/Documents/ISEP/3º%20Ano/ANADI/Trabalho%202/2-parte/AnadiApp/src/anadiapp/ui/AppUi.java</file>
+            <file>file:/C:/Users/skimi/OneDrive/Documents/ISEP/3º%20Ano/ANADI/Trabalho%202/2-parte/AnadiApp/src/anadiapp/model/Testing.java</file>
+            <file>file:/C:/Users/skimi/OneDrive/Documents/ISEP/3º%20Ano/ANADI/Trabalho%202/2-parte/AnadiApp/src/anadiapp/model/Connection.java</file>
+            <file>file:/C:/Users/skimi/OneDrive/Documents/ISEP/3º%20Ano/ANADI/Trabalho%202/2-parte/AnadiApp/src/anadiapp/controller/AppController.java</file>
+            <file>file:/C:/Users/skimi/OneDrive/Documents/ISEP/3º%20Ano/ANADI/Trabalho%202/2-parte/AnadiApp/src/anadiapp/model/ConnectData.java</file>
+            <file>file:/C:/Users/skimi/OneDrive/Documents/ISEP/3º%20Ano/ANADI/Trabalho%202/2-parte/AnadiApp/src/anadiapp/model/Result.java</file>
         </group>
     </open-files>
 </project-private>

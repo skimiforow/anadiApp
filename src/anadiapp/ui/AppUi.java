@@ -67,7 +67,7 @@ public class AppUi extends javax.swing.JFrame {
         txtResults = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        txtTestes = new javax.swing.JList<ConnectData>();
+        txtTestes = new javax.swing.JList<>();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
@@ -105,7 +105,7 @@ public class AppUi extends javax.swing.JFrame {
         txtNoRede.setToolTipText("(endereço IPv4, endereço IPv6 ou nome DNS) ");
 
         txtTempoLimite.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtTempoLimite.setText("50");
+        txtTempoLimite.setText("1000");
         txtTempoLimite.setToolTipText("em segundos");
 
         txtDuracaoTeste.setHorizontalAlignment(javax.swing.JTextField.CENTER);

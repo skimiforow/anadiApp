@@ -22,7 +22,7 @@ public class Connection {
         this.data = data;
         this.connected = false;
         this.sock = null;
-        this.socketAdd= new InetSocketAddress(data.getNode(),data.getPort());
+        this.socketAdd= new InetSocketAddress(data.getAddress(),data.getPort());
         this.AppUi = AppUi;
     }
 
@@ -36,7 +36,7 @@ public class Connection {
         } catch (IOException e) {
             AppUi.setText("Falha de " + data.getNode() + ", tipo - " + e.getMessage() +"\n");
             connected = false;
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return connected;
     }

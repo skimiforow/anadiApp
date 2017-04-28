@@ -39,17 +39,20 @@ public class Testing implements Runnable {
             AppUi.setText("Ligação: " + testes + " de " + data.getNode() + "\n");
             Connection c = new Connection(AppUi, data);
             success = c.connected();
-
+            int countFails = 0;
             if (success) {
                 AppUi.setText("Sucesso em establecer ligação a " + data.getNode() + "\n");
                 numberSuccess++;
             } else {
                 do {
+                    countFails++;
                     AppUi.setText(" |X| Falha na resposta de " + data.getNode() + "\n");
                     AppUi.setText("Repetição: " + testes + " de " + data.getNode() + "\n");
                     c = new Connection(AppUi, data);
                     success = c.connected();
-                } while (!success);
+                    after = Instant.now();
+                    difference = Duration.between(before, after).toMillis();
+                } while (!success && (difference <= limit) && (countFails < 3));
             }
             samplings++;
             testes++;
