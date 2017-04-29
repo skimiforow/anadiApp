@@ -51,7 +51,7 @@ public class SendToTxt {
         this.fileWriter.write(";");
         this.fileWriter.write(String.format("%d", this.result.getConfig().getTimeout()));
         this.fileWriter.write(";");
-        this.fileWriter.write(String.format("%.2f", this.result.getConfig().getDuration()));
+        this.fileWriter.write(String.format("%f", this.result.getConfig().getDuration()));
         this.fileWriter.write(";");
         this.fileWriter.write(String.format("%d", this.result.getTestEnd().getTimeInMillis() / 1000));
         this.fileWriter.write(";");
@@ -59,9 +59,9 @@ public class SendToTxt {
         this.fileWriter.write(";");
         this.fileWriter.write(String.format("%d", this.result.getSucess()));
         this.fileWriter.write(";");
-        this.fileWriter.write(String.format("%.2f", this.result.getAvailability()));
+        this.fileWriter.write(String.format("%.4f", this.result.getAvailability()));
         this.fileWriter.write(";");
-        this.fileWriter.write(String.format("%.2f", this.result.getMtbf()));
+        this.fileWriter.write(String.format("%f", this.result.getMtbf()));
         this.fileWriter.write("\n");
 
         this.fileWriter.close();
