@@ -88,7 +88,7 @@ public class AppUi extends javax.swing.JFrame {
 
         jLabel3.setText("Identificação do nó de rede ");
 
-        jLabel4.setText("Tempo máximo para estabelecer a ligação TCP (seg)");
+        jLabel4.setText("Tempo máximo para estabelecer a ligação TCP (miliseg)");
 
         jLabel5.setText("Tempo de duração do teste (min)");
 
@@ -217,7 +217,7 @@ public class AppUi extends javax.swing.JFrame {
                                             .addComponent(txtPorto, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtDuracaoTeste)
                                             .addComponent(txtAmostragem, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(0, 6, Short.MAX_VALUE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

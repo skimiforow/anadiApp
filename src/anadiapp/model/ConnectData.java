@@ -37,10 +37,6 @@ public class ConnectData {
         return timeout;
     }
 
-    public int getTimeoutMilli() {
-        return timeout * 1000;
-    }
-
     public float getDuration() {
         return duration;
     }
@@ -59,11 +55,11 @@ public class ConnectData {
 
     @Override
     public String toString() {
-        return "ConnectData - {" + "timeInterval=" + timeInterval + " seg" + ", port=" + port + ", node=" + node + ", timeout=" + timeout + " seg" + ", duration=" + duration + " min" + '}';
+        return "ConnectData - {" + "timeInterval=" + timeInterval + " seg" + ", port=" + port + ", node=" + node + ", timeout=" + timeout + " miliseg" + ", duration=" + duration + " min" + '}';
     }
 
-    int getInterval() {
-        return timeInterval;
+    public float getTimeIntervalHour() {
+        return (float) this.timeInterval / 3600;
     }
 
 }
