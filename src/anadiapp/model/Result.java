@@ -30,7 +30,7 @@ public final class Result {
         this.fails = getFails();
         this.mttr = getMttr();
         this.mttf = getMttf(numberSucess);
-        this.mtbf = mTBFCalculation();
+        this.mtbf = getMtbfCalc();
         this.availability = getAvailability(numberSucess);
     }
 
@@ -79,14 +79,13 @@ public final class Result {
             mttf = (float) ((numberSucess * this.intervalHour) / this.fails);
             return mttf;
         }
-
     }
 
     public int getSucess() {
         return sucess;
     }
 
-    private float mTBFCalculation() {
+    private float getMtbfCalc() {
         return this.mttf + this.mttr;
     }
 

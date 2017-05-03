@@ -35,7 +35,6 @@ public class Testing implements Runnable {
         before = Instant.now();
 
         do {
-            /*Console.print("Testing -> "+ (samplings + 1));*/
             AppUi.setText("Ligação: " + testes + " de " + data.getNode() + "\n");
             Connection c = new Connection(AppUi, data);
             success = c.connected();
